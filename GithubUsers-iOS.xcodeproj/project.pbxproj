@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		2907E7AC2316B80F00F38BF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2907E7AA2316B80F00F38BF8 /* LaunchScreen.storyboard */; };
 		2907E7B72316B80F00F38BF8 /* GithubUsers_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7B62316B80F00F38BF8 /* GithubUsers_iOSTests.swift */; };
 		2907E7C22316B80F00F38BF8 /* GithubUsers_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7C12316B80F00F38BF8 /* GithubUsers_iOSUITests.swift */; };
+		2907E7D42316DCD200F38BF8 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2907E7D32316DCD200F38BF8 /* Reachability.framework */; };
+		2907E7D62316DCE700F38BF8 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2907E7D52316DCE600F38BF8 /* RxSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 		2907E7BD2316B80F00F38BF8 /* GithubUsers-iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GithubUsers-iOSUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2907E7C12316B80F00F38BF8 /* GithubUsers_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUsers_iOSUITests.swift; sourceTree = "<group>"; };
 		2907E7C32316B80F00F38BF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2907E7D02316DAE200F38BF8 /* input.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = input.xcfilelist; sourceTree = "<group>"; };
+		2907E7D12316DAF400F38BF8 /* output.xcfilelist */ = {isa = PBXFileReference; lastKnownFileType = text.xcfilelist; path = output.xcfilelist; sourceTree = "<group>"; };
+		2907E7D32316DCD200F38BF8 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		2907E7D52316DCE600F38BF8 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2907E7D62316DCE700F38BF8 /* RxSwift.framework in Frameworks */,
+				2907E7D42316DCD200F38BF8 /* Reachability.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +85,13 @@
 		2907E7952316B80F00F38BF8 = {
 			isa = PBXGroup;
 			children = (
+				2907E7D02316DAE200F38BF8 /* input.xcfilelist */,
+				2907E7D12316DAF400F38BF8 /* output.xcfilelist */,
 				2907E7A02316B80F00F38BF8 /* GithubUsers-iOS */,
 				2907E7B52316B80F00F38BF8 /* GithubUsers-iOSTests */,
 				2907E7C02316B80F00F38BF8 /* GithubUsers-iOSUITests */,
 				2907E79F2316B80F00F38BF8 /* Products */,
+				2907E7D22316DCD200F38BF8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -125,6 +136,15 @@
 			path = "GithubUsers-iOSUITests";
 			sourceTree = "<group>";
 		};
+		2907E7D22316DCD200F38BF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2907E7D52316DCE600F38BF8 /* RxSwift.framework */,
+				2907E7D32316DCD200F38BF8 /* Reachability.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +155,7 @@
 				2907E79A2316B80F00F38BF8 /* Sources */,
 				2907E79B2316B80F00F38BF8 /* Frameworks */,
 				2907E79C2316B80F00F38BF8 /* Resources */,
+				2907E7CF2316DA2100F38BF8 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -250,6 +271,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2907E7CF2316DA2100F38BF8 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"$(SRCROOT)/input.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = Carthage;
+			outputFileListPaths = (
+				"$(SRCROOT)/output.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2907E79A2316B80F00F38BF8 /* Sources */ = {
@@ -434,7 +478,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AFZF43X7V9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "GithubUsers-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,7 +501,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AFZF43X7V9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "GithubUsers-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
