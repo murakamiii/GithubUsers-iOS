@@ -24,7 +24,7 @@ class MainViewModelTests: XCTestCase {
     func test_mainViewModelFunc() {
         let stub = GithubAPIStub(users: [
             GithubUser(login: "alice", id: 1, avatarUrl: URL(string: "https://example.com/img/1")!),
-            GithubUser(login: "bob", id: 2, avatarUrl: URL(string: "https://example.com/img/2")!),
+            GithubUser(login: "bob", id: 2, avatarUrl: URL(string: "https://example.com/img/2")!)
         ])
         let vm = usersListViewModel(api: stub)
         XCTAssertEqual(try vm.users.toBlocking().first()?.count, 2)

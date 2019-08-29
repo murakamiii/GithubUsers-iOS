@@ -18,7 +18,7 @@ enum APIError: Error, Equatable {
 }
 
 class ViewController: UIViewController {
-    @IBOutlet weak var usersTableView: UITableView!
+    @IBOutlet private weak var usersTableView: UITableView!
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         
         observables
             .users
-            .bind(to: usersTableView.rx.items(cellIdentifier: "userCell", cellType: UserCell.self)) { row, user, cell in
+            .bind(to: usersTableView.rx.items(cellIdentifier: "userCell", cellType: UserCell.self)) { _, user, cell in
                 cell.setup(user)
             }.disposed(by: disposeBag)
     }

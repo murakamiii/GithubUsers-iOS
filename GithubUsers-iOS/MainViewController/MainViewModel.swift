@@ -15,11 +15,11 @@ func usersListViewModel(api: GithubAPIProtocol) -> (users: Observable<[GithubUse
     
     let users = resp.filter { (event: Event<[GithubUser]>) in
         event.element != nil
-        }.map { $0.element! }
+    }.map { $0.element! }
     
     let error = resp.filter { (event: Event<[GithubUser]>) in
         event.error != nil
-        }.map { $0.error as! APIError }
+    }.map { $0.error as! APIError }
     
     return (users, error)
 }
