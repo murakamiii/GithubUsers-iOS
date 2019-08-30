@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let observables = usersListViewModel(api: GithubAPI())
+        let observables = usersListViewModel(api: UserListAPI())
         
         observables
             .error

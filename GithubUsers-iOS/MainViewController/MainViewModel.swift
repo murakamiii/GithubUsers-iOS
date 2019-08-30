@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-func usersListViewModel(api: GithubAPIProtocol) -> (users: Observable<[GithubUser]>, error: Observable<APIError>) {
+func usersListViewModel(api: UserListAPIProtocol) -> (users: Observable<[GithubUser]>, error: Observable<APIError>) {
     let resp = api.users().materialize().share(replay: 1)
     
     let users = resp.filter { (event: Event<[GithubUser]>) in

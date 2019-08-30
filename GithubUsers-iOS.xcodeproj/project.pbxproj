@@ -23,7 +23,7 @@
 		2907E7E4231737C400F38BF8 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2907E7E12317364500F38BF8 /* RxDataSources.framework */; };
 		2907E7E6231737D800F38BF8 /* Differentiator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2907E7E5231737D800F38BF8 /* Differentiator.framework */; };
 		2907E7EB23173F1F00F38BF8 /* GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7EA23173F1F00F38BF8 /* GithubUser.swift */; };
-		2907E7ED23173F4D00F38BF8 /* GithubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7EC23173F4D00F38BF8 /* GithubAPI.swift */; };
+		2907E7ED23173F4D00F38BF8 /* UserListAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7EC23173F4D00F38BF8 /* UserListAPI.swift */; };
 		2907E7EF23173FAC00F38BF8 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7EE23173FAC00F38BF8 /* MainViewModel.swift */; };
 		2907E7F12317400B00F38BF8 /* MainViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E7F02317400B00F38BF8 /* MainViewModelTests.swift */; };
 		2907E7F3231742B500F38BF8 /* RxBlocking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2907E7F2231742B500F38BF8 /* RxBlocking.framework */; };
@@ -32,6 +32,9 @@
 		2907E8002318739F00F38BF8 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2907E7FF2318739F00F38BF8 /* User.storyboard */; };
 		2907E8022318BA6600F38BF8 /* RepoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2907E8012318BA6600F38BF8 /* RepoCell.xib */; };
 		2907E8042318BA8300F38BF8 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E8032318BA8300F38BF8 /* RepoCell.swift */; };
+		2907E8062319934D00F38BF8 /* UserDetailAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E8052319934D00F38BF8 /* UserDetailAPI.swift */; };
+		2907E8082319938F00F38BF8 /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E8072319938F00F38BF8 /* UserDetail.swift */; };
+		2907E80A2319939900F38BF8 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E8092319939900F38BF8 /* Repo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +92,7 @@
 		2907E7E12317364500F38BF8 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
 		2907E7E5231737D800F38BF8 /* Differentiator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differentiator.framework; path = Carthage/Build/iOS/Differentiator.framework; sourceTree = "<group>"; };
 		2907E7EA23173F1F00F38BF8 /* GithubUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUser.swift; sourceTree = "<group>"; };
-		2907E7EC23173F4D00F38BF8 /* GithubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPI.swift; sourceTree = "<group>"; };
+		2907E7EC23173F4D00F38BF8 /* UserListAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListAPI.swift; sourceTree = "<group>"; };
 		2907E7EE23173FAC00F38BF8 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		2907E7F02317400B00F38BF8 /* MainViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModelTests.swift; sourceTree = "<group>"; };
 		2907E7F2231742B500F38BF8 /* RxBlocking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxBlocking.framework; path = Carthage/Build/iOS/RxBlocking.framework; sourceTree = "<group>"; };
@@ -97,6 +100,9 @@
 		2907E7FF2318739F00F38BF8 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		2907E8012318BA6600F38BF8 /* RepoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepoCell.xib; sourceTree = "<group>"; };
 		2907E8032318BA8300F38BF8 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
+		2907E8052319934D00F38BF8 /* UserDetailAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailAPI.swift; sourceTree = "<group>"; };
+		2907E8072319938F00F38BF8 /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
+		2907E8092319939900F38BF8 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				2907E7A12316B80F00F38BF8 /* AppDelegate.swift */,
+				2907E80B2319940600F38BF8 /* Model */,
 				2907E7E923173F0200F38BF8 /* GithubAPI */,
 				2907E7E823173EE500F38BF8 /* MainViewController */,
 				2907E7FC2318727A00F38BF8 /* UserViewController */,
@@ -225,8 +232,8 @@
 		2907E7E923173F0200F38BF8 /* GithubAPI */ = {
 			isa = PBXGroup;
 			children = (
-				2907E7EA23173F1F00F38BF8 /* GithubUser.swift */,
-				2907E7EC23173F4D00F38BF8 /* GithubAPI.swift */,
+				2907E7EC23173F4D00F38BF8 /* UserListAPI.swift */,
+				2907E8052319934D00F38BF8 /* UserDetailAPI.swift */,
 			);
 			path = GithubAPI;
 			sourceTree = "<group>";
@@ -240,6 +247,16 @@
 				2907E8032318BA8300F38BF8 /* RepoCell.swift */,
 			);
 			path = UserViewController;
+			sourceTree = "<group>";
+		};
+		2907E80B2319940600F38BF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2907E7EA23173F1F00F38BF8 /* GithubUser.swift */,
+				2907E8072319938F00F38BF8 /* UserDetail.swift */,
+				2907E8092319939900F38BF8 /* Repo.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,9 +437,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2907E80A2319939900F38BF8 /* Repo.swift in Sources */,
 				2907E7FE2318735200F38BF8 /* UserViewController.swift in Sources */,
 				2907E7A42316B80F00F38BF8 /* ViewController.swift in Sources */,
-				2907E7ED23173F4D00F38BF8 /* GithubAPI.swift in Sources */,
+				2907E8062319934D00F38BF8 /* UserDetailAPI.swift in Sources */,
+				2907E8082319938F00F38BF8 /* UserDetail.swift in Sources */,
+				2907E7ED23173F4D00F38BF8 /* UserListAPI.swift in Sources */,
 				2907E7EB23173F1F00F38BF8 /* GithubUser.swift in Sources */,
 				2907E7A22316B80F00F38BF8 /* AppDelegate.swift in Sources */,
 				2907E7DE2317325C00F38BF8 /* UserCell.swift in Sources */,

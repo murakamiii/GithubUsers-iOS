@@ -22,7 +22,7 @@ class MainViewModelTests: XCTestCase {
     
     // とりあえずスモークテスト
     func test_mainViewModelFunc() {
-        let stub = GithubAPIStub(users: [
+        let stub = UserListAPIStub(users: [
             GithubUser(login: "alice", id: 1, avatarUrl: URL(string: "https://example.com/img/1")!),
             GithubUser(login: "bob", id: 2, avatarUrl: URL(string: "https://example.com/img/2")!)
         ])
@@ -32,7 +32,7 @@ class MainViewModelTests: XCTestCase {
     }
     
     func test_mainViewModelFuncError() {
-        let stub = GithubAPIErrorStub()
+        let stub = UserListAPIErrorStub()
         let vm = usersListViewModel(api: stub)
         XCTAssertEqual(try vm.users.toBlocking().first()?.count, nil)
         XCTAssertEqual(try vm.error.toBlocking().first(), APIError.server)
