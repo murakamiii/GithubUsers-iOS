@@ -30,6 +30,10 @@ class UserViewController: UIViewController {
     @IBOutlet private weak var followingLabel: UILabel!
     @IBOutlet private weak var reposTableView: UITableView!
     
+    @IBOutlet private weak var avatarHeightConstraint: NSLayoutConstraint!
+    let avatarMaxHeight: CGFloat = 160.0
+    let avatarMinHeight: CGFloat = 48.0
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -51,6 +55,12 @@ class UserViewController: UIViewController {
         
         let nib = UINib(nibName: "RepoCell", bundle: nil)
         reposTableView.register(nib, forCellReuseIdentifier: "RepoCell")
+        
+        reposTableView.rx.contentOffset.subscribe(onNext: {[weak self] offset in
+            guard let self = self else { return }
+            let fixedheight = max(self.avatarMaxHeight - offset.y, self.avatarMinHeight)
+            self.avatarHeightConstraint.constant = fixedheight
+        }).disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
