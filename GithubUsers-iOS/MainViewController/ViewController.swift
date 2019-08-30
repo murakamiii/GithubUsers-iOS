@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     private func setupUI() {
         let nib = UINib(nibName: "UserCell", bundle: nil)
         usersTableView.register(nib, forCellReuseIdentifier: "userCell")
+        self.navigationItem.title = "ユーザー一覧"
     }
     
     private func bindViewModel() {
@@ -47,5 +48,10 @@ class ViewController: UIViewController {
             .bind(to: usersTableView.rx.items(cellIdentifier: "userCell", cellType: UserCell.self)) { _, user, cell in
                 cell.setup(user)
             }.disposed(by: disposeBag)
+        
+        usersTableView.rx.modelSelected(GithubUser.self).subscribe { user in
+            let vc = UserViewController.make(user: user.element!)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }.disposed(by: disposeBag)
     }
 }

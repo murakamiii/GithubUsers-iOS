@@ -55,3 +55,64 @@ class GithubAPIErrorStub: GithubAPIProtocol {
         }
     }
 }
+
+
+struct GithubUserDetail: Codable {
+    var name: String?
+    var followers: Int
+    var following: Int
+}
+
+struct Repo: Codable {
+    var htmlUrl: URL
+    var name: String
+    var language: String?
+    var stargazersCount: Int
+    var description: String?
+}
+
+protocol UserDetailAPIProtocol {
+    func user(login: String) -> Observable<GithubUserDetail>
+    func repos(login: String) -> Observable<[Repo]>
+}
+
+class DetailAPI: UserDetailAPIProtocol {
+    let session = URLSession.shared
+    
+    func user(login: String) -> Observable<GithubUserDetail> {
+        let url = URL(string: "https://api.github.com/users/\(login)")!
+        let req = URLRequest(url: url)
+        
+        return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode != 200 {
+                throw APIError.server
+            }
+            
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode(GithubUserDetail.self, from: data) {
+                return decoded
+            } else {
+                throw APIError.server
+            }
+        }
+    }
+    
+    func repos(login: String) -> Observable<[Repo]> {
+        let url = URL(string: "https://api.github.com/users/\(login)/repos")!
+        let req = URLRequest(url: url)
+        
+        return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode != 200 {
+                throw APIError.server
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            if let decoded = try? decoder.decode([Repo].self, from: data) {
+                return decoded
+            } else {
+                throw APIError.server
+            }
+        }
+    }
+}
