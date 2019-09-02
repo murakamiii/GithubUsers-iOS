@@ -91,7 +91,6 @@ class UserViewController: UIViewController {
             }.disposed(by: disposeBag)
         
         reposTableView.rx.modelSelected(Repo.self).subscribe { repo in
-            print(repo.element!.htmlUrl)
             let vc = RepoWebViewController.make(url: repo.element!.htmlUrl)
             self.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
@@ -119,29 +118,4 @@ func userViewModel(api: UserDetailAPIProtocol, login: String) -> (detail: Observ
     }.map { $0.error as! APIError }
     
     return (detail, repos, error)
-}
-
-import WebKit
-class RepoWebViewController: UIViewController, WKUIDelegate {
-    static func make(url: URL) -> RepoWebViewController {
-        let vc = RepoWebViewController()
-        vc.repoUrl = url
-        return vc
-    }
-    
-    var webView: WKWebView!
-    var repoUrl: URL!
-    
-    override func loadView() {
-        let conf = WKWebViewConfiguration()
-        webView = WKWebView.init(frame: .zero, configuration: conf)
-        webView.uiDelegate = self
-        view = webView
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let myRequest = URLRequest(url: repoUrl)
-        webView.load(myRequest)
-    }
 }
