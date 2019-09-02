@@ -36,6 +36,8 @@
 		2907E8082319938F00F38BF8 /* UserDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E8072319938F00F38BF8 /* UserDetail.swift */; };
 		2907E80A2319939900F38BF8 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907E8092319939900F38BF8 /* Repo.swift */; };
 		299AD8C7231C975A00CC6932 /* RepositoryWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8C6231C975A00CC6932 /* RepositoryWebViewController.swift */; };
+		299AD8CA231D5AF200CC6932 /* UserListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8C9231D5AF200CC6932 /* UserListRepository.swift */; };
+		299AD8CC231D9EB500CC6932 /* UserDetailRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8CB231D9EB500CC6932 /* UserDetailRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		2907E8072319938F00F38BF8 /* UserDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetail.swift; sourceTree = "<group>"; };
 		2907E8092319939900F38BF8 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		299AD8C6231C975A00CC6932 /* RepositoryWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryWebViewController.swift; sourceTree = "<group>"; };
+		299AD8C9231D5AF200CC6932 /* UserListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListRepository.swift; sourceTree = "<group>"; };
+		299AD8CB231D9EB500CC6932 /* UserDetailRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,7 @@
 			children = (
 				2907E7A12316B80F00F38BF8 /* AppDelegate.swift */,
 				2907E80B2319940600F38BF8 /* Model */,
+				299AD8C8231C9F2100CC6932 /* Repository */,
 				2907E7E923173F0200F38BF8 /* GithubAPI */,
 				2907E7E823173EE500F38BF8 /* MainViewController */,
 				2907E7FC2318727A00F38BF8 /* UserViewController */,
@@ -246,8 +251,7 @@
 			children = (
 				2907E7FF2318739F00F38BF8 /* User.storyboard */,
 				2907E7FD2318735200F38BF8 /* UserViewController.swift */,
-				2907E8012318BA6600F38BF8 /* RepoCell.xib */,
-				2907E8032318BA8300F38BF8 /* RepoCell.swift */,
+				299AD8CD231D9F3800CC6932 /* New Group */,
 			);
 			path = UserViewController;
 			sourceTree = "<group>";
@@ -268,6 +272,24 @@
 				299AD8C6231C975A00CC6932 /* RepositoryWebViewController.swift */,
 			);
 			path = RepositoryWebView;
+			sourceTree = "<group>";
+		};
+		299AD8C8231C9F2100CC6932 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				299AD8C9231D5AF200CC6932 /* UserListRepository.swift */,
+				299AD8CB231D9EB500CC6932 /* UserDetailRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		299AD8CD231D9F3800CC6932 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				2907E8012318BA6600F38BF8 /* RepoCell.xib */,
+				2907E8032318BA8300F38BF8 /* RepoCell.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,6 +473,7 @@
 				2907E80A2319939900F38BF8 /* Repo.swift in Sources */,
 				2907E7FE2318735200F38BF8 /* UserViewController.swift in Sources */,
 				2907E7A42316B80F00F38BF8 /* ViewController.swift in Sources */,
+				299AD8CC231D9EB500CC6932 /* UserDetailRepository.swift in Sources */,
 				2907E8062319934D00F38BF8 /* UserDetailAPI.swift in Sources */,
 				2907E8082319938F00F38BF8 /* UserDetail.swift in Sources */,
 				2907E7ED23173F4D00F38BF8 /* UserListAPI.swift in Sources */,
@@ -459,6 +482,7 @@
 				2907E7A22316B80F00F38BF8 /* AppDelegate.swift in Sources */,
 				2907E7DE2317325C00F38BF8 /* UserCell.swift in Sources */,
 				2907E7EF23173FAC00F38BF8 /* MainViewModel.swift in Sources */,
+				299AD8CA231D5AF200CC6932 /* UserListRepository.swift in Sources */,
 				2907E8042318BA8300F38BF8 /* RepoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

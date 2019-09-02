@@ -9,17 +9,29 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
 
-func usersListViewModel(api: UserListAPIProtocol) -> (users: Observable<[GithubUser]>, error: Observable<APIError>) {
-    let resp = api.users().materialize().share(replay: 1)
+class UsersListViewModel {
+    private let repository: UserListRepositoryProtocol
+    private let disposeBag = DisposeBag()
     
-    let users = resp.filter { (event: Event<[GithubUser]>) in
-        event.element != nil
-    }.map { $0.element! }
+    let users: Observable<[GithubUser]>
+    let error: Observable<APIError>
+    let isLoading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
-    let error = resp.filter { (event: Event<[GithubUser]>) in
-        event.error != nil
-    }.map { $0.error as! APIError }
-    
-    return (users, error)
+    init(repository: UserListRepositoryProtocol, scrollBottomEvent: Observable<Void>) {
+        self.repository = repository
+        users = repository.users.asObservable()
+        error = repository.usersError.asObservable()
+        
+        scrollBottomEvent.subscribe(onNext: { _ in
+            if self.isLoading.value == true {
+                return
+            }
+            self.repository.callAppend().subscribe(onCompleted: {
+                self.isLoading.accept(false)
+            }).disposed(by: self.disposeBag)
+            self.isLoading.accept(true)
+        }).disposed(by: disposeBag)
+    }
 }

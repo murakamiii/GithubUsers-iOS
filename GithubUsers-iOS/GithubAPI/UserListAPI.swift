@@ -8,9 +8,12 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
+import Reachability
 
 protocol UserListAPIProtocol {
     func users() -> Observable<[GithubUser]>
+    func appendUsers(since: Int) -> Observable<[GithubUser]>
 }
 
 class UserListAPI: UserListAPIProtocol {
@@ -20,6 +23,36 @@ class UserListAPI: UserListAPIProtocol {
         let url = URL(string: "https://api.github.com/users")!
         let req = URLRequest(url: url)
         
+        if Reachability()!.connection == .none {
+            return Observable<[GithubUser]>.create { obs in
+                obs.onError(APIError.network)
+                return Disposables.create {}
+            }
+        }
+        return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode != 200 {
+                throw APIError.server
+            }
+            
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            if let decoded = try? decoder.decode([GithubUser].self, from: data) {
+                return decoded
+            } else {
+                throw APIError.server
+            }
+        }
+    }
+    
+    func appendUsers(since sinceId: Int) -> Observable<[GithubUser]> {
+        let url = URL(string: "https://api.github.com/users?since=\(sinceId)")!
+        let req = URLRequest(url: url)
+        if Reachability()!.connection == .none {
+            return Observable<[GithubUser]>.create { obs in
+                obs.onError(APIError.network)
+                return Disposables.create {}
+            }
+        }
         return session.rx.response(request: req).map { resp, data in
             if resp.statusCode != 200 {
                 throw APIError.server
@@ -37,6 +70,10 @@ class UserListAPI: UserListAPIProtocol {
 }
 
 class UserListAPIStub: UserListAPIProtocol {
+    func appendUsers(since: Int) -> Observable<[GithubUser]> {
+        fatalError()
+    }
+    
     let stub: [GithubUser]
     init(users: [GithubUser]) {
         stub = users
@@ -48,6 +85,10 @@ class UserListAPIStub: UserListAPIProtocol {
 }
 
 class UserListAPIErrorStub: UserListAPIProtocol {
+    func appendUsers(since: Int) -> Observable<[GithubUser]> {
+        fatalError()
+    }
+    
     func users() -> Observable<[GithubUser]> {
         return Observable<[GithubUser]>.create { ob in
             ob.onError(APIError.server)
