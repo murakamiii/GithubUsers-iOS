@@ -12,4 +12,5 @@ struct GithubUserDetail: Codable {
     var name: String?
     var followers: Int
     var following: Int
+    var publicRepos: Int
 }

@@ -14,6 +14,7 @@ import Nuke
 
 class UserViewController: UIViewController {
     var user: GithubUser!
+    var viewModel: UserDetailViewModel?
     
     static func make(user: GithubUser) -> UserViewController {
         let storyboard = UIStoryboard.init(name: "User", bundle: .main)
@@ -64,16 +65,26 @@ class UserViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        let observables = userViewModel(api: DetailAPI(), login: user.login)
+        let event = reposTableView.rx.contentOffset
+            .asDriver()
+            .filter { _ in self.reposTableView.contentSize.height > 0 }
+            .map {
+                $0.y + self.reposTableView.frame.height + 100.0 - self.reposTableView.contentSize.height
+            }
+            .distinctUntilChanged().filter { $0 > 0.0 }
+            .asSignal(onErrorJustReturn: 0.0)
+            .map({ _ -> Void in })
+            .asObservable()
         
-        observables
-            .error
+        let vm = UserDetailViewModel.init(repository: UserDetailRepository(api: DetailAPI(), login: user.login),
+                                          scrollBottomEvent: event)
+        
+        vm.error
             .subscribe(onNext: { err in
                 print(err)
             }).disposed(by: disposeBag)
         
-        observables
-            .detail
+        vm.detail
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] detail in
                 guard let self = self else {
@@ -84,8 +95,7 @@ class UserViewController: UIViewController {
                 self.followingLabel.text = "Following: \(detail.following)"
             }).disposed(by: disposeBag)
         
-        observables
-            .repos
+        vm.repos
             .bind(to: reposTableView.rx.items(cellIdentifier: "RepoCell", cellType: RepoCell.self)) { _, repo, cell in
                 cell.setup(repo)
             }.disposed(by: disposeBag)
@@ -94,28 +104,7 @@ class UserViewController: UIViewController {
             let vc = RepoWebViewController.make(url: repo.element!.htmlUrl)
             self.navigationController?.pushViewController(vc, animated: true)
         }.disposed(by: disposeBag)
+        
+        viewModel = vm
     }
-}
-
-func userViewModel(api: UserDetailAPIProtocol, login: String) -> (detail: Observable<GithubUserDetail>, repos: Observable<[Repo]>, error: Observable<APIError>) {
-    let resp = api.user(login: login).materialize().share(replay: 1)
-    let resp2 = api.repos(login: login).materialize().share(replay: 1)
-    
-    let detail = resp.filter { (event: Event<GithubUserDetail>) in
-        event.element != nil
-    }.map { $0.element! }
-    
-    let repos = resp2.filter { (event: Event<[Repo]>) in
-        event.element != nil
-    }.map { $0.element! }
-    
-    let error = resp.filter { (event: Event<GithubUserDetail>) in
-        event.error != nil
-    }.map { $0.error as! APIError }
-    
-    let repoErr = resp2.filter { (event: Event<[Repo]>) in
-        event.error != nil
-    }.map { $0.error as! APIError }
-    
-    return (detail, repos, error)
 }

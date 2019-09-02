@@ -15,6 +15,7 @@ import RxDataSources
 enum APIError: Error, Equatable {
     case server
     case network
+    case application
 }
 
 class ViewController: UIViewController {

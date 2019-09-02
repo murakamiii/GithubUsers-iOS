@@ -14,4 +14,9 @@ struct Repo: Codable {
     var language: String?
     var stargazersCount: Int
     var description: String?
+    var fork: Bool
+}
+
+extension Repo: Equatable {
+    
 }
