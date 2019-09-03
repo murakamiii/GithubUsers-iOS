@@ -13,7 +13,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Select Xcode version
       run: sudo xcode-select -s '/Applications/Xcode_10.3.app/Contents/Developer'
-    - name: install carthage dependencies
-      run: carthage bootstrap --platform iOS --no-use-binaries
+    # キャッシュが今はないので Carthage/Build/ を持ってしまう
+    # - name: install carthage dependencies
+    #   run: carthage bootstrap --platform iOS --no-use-binaries
     - name: Build # シミュレーター向け
       run: xcodebuild -sdk iphonesimulator -configuration Debug build
