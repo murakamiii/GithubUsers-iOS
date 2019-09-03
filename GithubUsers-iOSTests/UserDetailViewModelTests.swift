@@ -37,7 +37,7 @@ class UserDetailViewModelTests: XCTestCase {
 
         let vm = UserDetailViewModel(repository: UserDetailRepositoryStub(repos: [.success([repo1, repo2]), .success([repo3])], detail: detailStub),
                                      scrollBottomEvent: tap.asObservable())
-        XCTAssertEqual(try vm.detail.toBlocking().first()?.name, "test_tarou")
+        XCTAssertEqual(try vm.detail.toBlocking().first()?.name, "test_tarou1")
 
         vm.repos.asDriver(onErrorJustReturn: []).drive(repos).disposed(by: disposeBag)
         scheduler.start()
