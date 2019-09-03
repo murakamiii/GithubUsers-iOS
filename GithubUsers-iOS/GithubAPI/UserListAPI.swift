@@ -21,7 +21,10 @@ class UserListAPI: UserListAPIProtocol {
     
     func users() -> Observable<[GithubUser]> {
         let url = URL(string: "https://api.github.com/users")!
-        let req = URLRequest(url: url)
+        var req = URLRequest(url: url)
+        if let token = ProcessInfo.processInfo.environment["personal_access_token"] {
+            req.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         if Reachability()!.connection == .none {
             return Observable<[GithubUser]>.create { obs in
@@ -30,6 +33,9 @@ class UserListAPI: UserListAPIProtocol {
             }
         }
         return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode == 403, let remain = resp.allHeaderFields["X-RateLimit-Remaining"] as? String, remain == "0" {
+                throw APIError.rateLimit
+            }
             if resp.statusCode != 200 {
                 throw APIError.server
             }
@@ -46,7 +52,11 @@ class UserListAPI: UserListAPIProtocol {
     
     func appendUsers(since sinceId: Int) -> Observable<[GithubUser]> {
         let url = URL(string: "https://api.github.com/users?since=\(sinceId)")!
-        let req = URLRequest(url: url)
+        var req = URLRequest(url: url)
+        if let token = ProcessInfo.processInfo.environment["personal_access_token"] {
+            req.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
         if Reachability()!.connection == .none {
             return Observable<[GithubUser]>.create { obs in
                 obs.onError(APIError.network)
@@ -54,6 +64,9 @@ class UserListAPI: UserListAPIProtocol {
             }
         }
         return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode == 403, let remain = resp.allHeaderFields["X-RateLimit-Remaining"] as? String, remain == "0" {
+                throw APIError.rateLimit
+            }
             if resp.statusCode != 200 {
                 throw APIError.server
             }

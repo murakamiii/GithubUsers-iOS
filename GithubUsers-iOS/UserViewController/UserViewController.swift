@@ -28,7 +28,6 @@ class UserViewController: UIViewController {
     @IBOutlet private weak var fullnameLabel: UILabel!
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet private weak var followersLabel: UILabel!
-    @IBOutlet private weak var followingLabel: UILabel!
     @IBOutlet private weak var reposTableView: UITableView!
     
     @IBOutlet private weak var avatarHeightConstraint: NSLayoutConstraint!
@@ -45,6 +44,10 @@ class UserViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        if let seleted = reposTableView.indexPathForSelectedRow {
+            reposTableView.deselectRow(at: seleted, animated: true)
+        }
     }
     
     private func setupUI() {
@@ -81,7 +84,7 @@ class UserViewController: UIViewController {
         
         vm.error
             .subscribe(onNext: { err in
-                print(err)
+                self.showError(error: err)
             }).disposed(by: disposeBag)
         
         vm.detail
@@ -91,8 +94,7 @@ class UserViewController: UIViewController {
                     return
                 }
                 self.fullnameLabel.text = detail.name
-                self.followersLabel.text = "Followers: \(detail.followers)"
-                self.followingLabel.text = "Following: \(detail.following)"
+                self.followersLabel.text = "Followers: \(detail.followers)  Following: \(detail.following)"
             }).disposed(by: disposeBag)
         
         vm.repos
@@ -106,5 +108,11 @@ class UserViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         viewModel = vm
+    }
+    
+    private func showError(error: APIError) {
+        let alert = UIAlertController(title: "エラー", message: error.message(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }

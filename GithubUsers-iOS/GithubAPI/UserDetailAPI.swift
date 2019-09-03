@@ -20,9 +20,16 @@ class DetailAPI: UserDetailAPIProtocol {
     
     func user(login: String) -> Observable<GithubUserDetail> {
         let url = URL(string: "https://api.github.com/users/\(login)")!
-        let req = URLRequest(url: url)
+        var req = URLRequest(url: url)
+        if let token = ProcessInfo.processInfo.environment["personal_access_token"] {
+            req.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode == 403, let remain = resp.allHeaderFields["X-RateLimit-Remaining"] as? String, remain == "0" {
+                throw APIError.rateLimit
+            }
+
             if resp.statusCode != 200 {
                 throw APIError.server
             }
@@ -39,13 +46,18 @@ class DetailAPI: UserDetailAPIProtocol {
     
     func repos(login: String) -> Observable<[Repo]> {
         let url = URL(string: "https://api.github.com/users/\(login)/repos")!
-        let req = URLRequest(url: url)
+        var req = URLRequest(url: url)
+        if let token = ProcessInfo.processInfo.environment["personal_access_token"] {
+            req.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode == 403, let remain = resp.allHeaderFields["X-RateLimit-Remaining"] as? String, remain == "0" {
+                throw APIError.rateLimit
+            }
             if resp.statusCode != 200 {
                 throw APIError.server
             }
-            
             let decoder = JSONDecoder()
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             if let decoded = try? decoder.decode([Repo].self, from: data) {
@@ -58,9 +70,15 @@ class DetailAPI: UserDetailAPIProtocol {
     
     func appendRepos(login: String, page: Int) -> Observable<[Repo]> {
         let url = URL(string: "https://api.github.com/users/\(login)/repos?page=\(page)")!
-        let req = URLRequest(url: url)
+        var req = URLRequest(url: url)
+        if let token = ProcessInfo.processInfo.environment["personal_access_token"] {
+            req.addValue("token \(token)", forHTTPHeaderField: "Authorization")
+        }
         
         return session.rx.response(request: req).map { resp, data in
+            if resp.statusCode == 403, let remain = resp.allHeaderFields["X-RateLimit-Remaining"] as? String, remain == "0" {
+                throw APIError.rateLimit
+            }
             if resp.statusCode != 200 {
                 throw APIError.server
             }

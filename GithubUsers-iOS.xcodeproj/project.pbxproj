@@ -42,6 +42,7 @@
 		299AD8D1231DBA0400CC6932 /* UserDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8D0231DBA0400CC6932 /* UserDetailViewModelTests.swift */; };
 		299AD8D7231DD06100CC6932 /* RxTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 299AD8D6231DD06100CC6932 /* RxTest.framework */; };
 		299AD8D8231DD10100CC6932 /* RxTest.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 299AD8D6231DD06100CC6932 /* RxTest.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		299AD8DA231DD80D00CC6932 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299AD8D9231DD80D00CC6932 /* APIError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		299AD8CE231DB4D600CC6932 /* UserDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModel.swift; sourceTree = "<group>"; };
 		299AD8D0231DBA0400CC6932 /* UserDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewModelTests.swift; sourceTree = "<group>"; };
 		299AD8D6231DD06100CC6932 /* RxTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxTest.framework; path = Carthage/Build/iOS/RxTest.framework; sourceTree = "<group>"; };
+		299AD8D9231DD80D00CC6932 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,6 +253,7 @@
 		2907E7E923173F0200F38BF8 /* GithubAPI */ = {
 			isa = PBXGroup;
 			children = (
+				299AD8D9231DD80D00CC6932 /* APIError.swift */,
 				2907E7EC23173F4D00F38BF8 /* UserListAPI.swift */,
 				2907E8052319934D00F38BF8 /* UserDetailAPI.swift */,
 			);
@@ -495,6 +498,7 @@
 				2907E7DE2317325C00F38BF8 /* UserCell.swift in Sources */,
 				2907E7EF23173FAC00F38BF8 /* MainViewModel.swift in Sources */,
 				299AD8CF231DB4D600CC6932 /* UserDetailViewModel.swift in Sources */,
+				299AD8DA231DD80D00CC6932 /* APIError.swift in Sources */,
 				299AD8CA231D5AF200CC6932 /* UserListRepository.swift in Sources */,
 				2907E8042318BA8300F38BF8 /* RepoCell.swift in Sources */,
 			);

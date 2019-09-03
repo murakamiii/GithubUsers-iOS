@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5gd-2j-VGe">
-                                <rect key="frame" x="0.0" y="44" width="414" height="247"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="229"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRo-Uc-BIE">
                                         <rect key="frame" x="87" y="0.0" width="240" height="16"/>
@@ -71,21 +71,11 @@
                                             <constraint firstAttribute="width" constant="240" id="c3e-lM-cuU"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfc-hS-IEl">
-                                        <rect key="frame" x="127" y="211" width="160" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfc-hS-IEl">
+                                        <rect key="frame" x="87" y="211" width="240" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="ZeR-OH-nuZ"/>
-                                            <constraint firstAttribute="width" constant="160" id="pbG-uE-ZUX"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXy-FE-xuP">
-                                        <rect key="frame" x="127" y="229" width="160" height="18"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="x7R-PG-Kwt"/>
-                                            <constraint firstAttribute="height" constant="18" id="yUo-ZJ-5cV"/>
+                                            <constraint firstAttribute="width" constant="240" id="pbG-uE-ZUX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                         <nil key="textColor"/>
@@ -94,7 +84,7 @@
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5cF-nr-YV1">
-                                <rect key="frame" x="0.0" y="307" width="414" height="555"/>
+                                <rect key="frame" x="0.0" y="289" width="414" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
@@ -114,7 +104,6 @@
                         <outlet property="avatarHeightConstraint" destination="qyJ-t7-1iq" id="KlA-z2-uDr"/>
                         <outlet property="avatarImageView" destination="iYL-w1-EcM" id="U06-1e-9oD"/>
                         <outlet property="followersLabel" destination="hfc-hS-IEl" id="4y7-Mr-hNa"/>
-                        <outlet property="followingLabel" destination="bXy-FE-xuP" id="RyA-qA-FxI"/>
                         <outlet property="fullnameLabel" destination="rNy-2N-rdF" id="DZz-oO-Lmr"/>
                         <outlet property="loginLabel" destination="oBR-P7-zLv" id="C6b-O9-hw5"/>
                         <outlet property="reposTableView" destination="5cF-nr-YV1" id="vbG-gH-hRe"/>

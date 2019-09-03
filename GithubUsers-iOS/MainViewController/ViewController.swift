@@ -12,12 +12,6 @@ import RxCocoa
 import Foundation
 import RxDataSources
 
-enum APIError: Error, Equatable {
-    case server
-    case network
-    case application
-}
-
 class ViewController: UIViewController {
     @IBOutlet private weak var usersTableView: UITableView!
     let disposeBag = DisposeBag()
@@ -28,6 +22,14 @@ class ViewController: UIViewController {
 
         setupUI()
         bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let seleted = usersTableView.indexPathForSelectedRow {
+            usersTableView.deselectRow(at: seleted, animated: true)
+        }
     }
     
     private func setupUI() {
@@ -53,7 +55,7 @@ class ViewController: UIViewController {
         
         vm.error
         .subscribe(onNext: { (err: APIError) in
-            print(err)
+            self.showError(error: err)
         }).disposed(by: disposeBag)
         
         vm.users
@@ -68,5 +70,11 @@ class ViewController: UIViewController {
         }.disposed(by: disposeBag)
         
         viewModel = vm
+    }
+    
+    private func showError(error: APIError) {
+        let alert = UIAlertController(title: "エラー", message: error.message(), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
