@@ -11,8 +11,8 @@ import UIKit
 import Nuke
 
 class UserCell: UITableViewCell {
-    @IBOutlet weak var userIconImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet private weak var userIconImageView: UIImageView!
+    @IBOutlet private weak var userNameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

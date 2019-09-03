@@ -1,28 +1,29 @@
 //
-//  MainViewModel.swift
+//  UserDetailViewModel.swift
 //  GithubUsers-iOS
 //
-//  Created by murakami Taichi on 2019/08/29.
+//  Created by murakami Taichi on 2019/09/03.
 //  Copyright © 2019 murakammm. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 import RxCocoa
-import UIKit
 
-class UsersListViewModel {
-    private let repository: UserListRepositoryProtocol
+class UserDetailViewModel {
+    private let repository: UserDetailRepositoryProtocol
     private let disposeBag = DisposeBag()
     
-    let users: Observable<[GithubUser]>
+    let detail: Observable<GithubUserDetail>
+    let repos: Observable<[Repo]>
     let error: Observable<APIError>
     let isLoading: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     
-    init(repository: UserListRepositoryProtocol, scrollBottomEvent: Observable<Void>) {
+    init(repository: UserDetailRepositoryProtocol, scrollBottomEvent: Observable<Void>) {
         self.repository = repository
-        users = repository.users.asObservable()
-        error = repository.usersError.asObservable()
+        detail = repository.detail.asObservable().filter { $0 != nil }.map { $0! }
+        repos = repository.repos.asObservable().map { $0.filter({ repo -> Bool in repo.fork == false }) }
+        error = repository.error.asObservable()
         
         scrollBottomEvent.subscribe(onNext: { _ in
             if self.isLoading.value == true {
